@@ -10,33 +10,22 @@ import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Valida
 })
 export class UserAddComponent implements OnInit {
 
-  userForm: FormGroup;
-  name: string = '';
-  email: string = '';
-  company: string = '';
+  adForm: FormGroup;
+  title: string = '';
+  description: string = '';
   isLoadingResults = false;
 
   constructor(private router: Router, private api: ApiService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.userForm = this.formBuilder.group({
-      'name': [null, Validators.required],
-      'email': [null, Validators.required],
-      'company': [null, Validators.required]
+    this.adForm = this.formBuilder.group({
+      'title': [null, Validators.required],
+      'description': [null, Validators.required]
     });
   }
 
   onFormSubmit(form: NgForm) {
-    this.isLoadingResults = true;
-    this.api.addUser(form)
-      .subscribe(res => {
-        let id = res['id'];
-        this.isLoadingResults = false;
-        this.router.navigate(['/user-details', id]);
-      }, (err) => {
-        console.log(err);
-        this.isLoadingResults = false;
-      });
+    var newId = this.api.addAd(form);
+    this.router.navigate(['/user-details', newId]);
   }
-
 }

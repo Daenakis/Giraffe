@@ -8,27 +8,21 @@
     </a>
   </div>
   <mat-card class="example-card">
-    <form [formGroup]="userForm" (ngSubmit)="onFormSubmit(userForm.value)">
+    <form [formGroup]="adForm" (ngSubmit)="onFormSubmit(adForm.value)">
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="User Name" formControlName="name" [errorStateMatcher]="matcher">
+        <input matInput placeholder="Ad Title" formControlName="title" [errorStateMatcher]="matcher">
         <mat-error>
-          <span *ngIf="!userForm.get('name').valid && userForm.get('name').touched">Please enter User Name</span>
+          <span *ngIf="!adForm.get('title').valid && adForm.get('title').touched">Please enter Ad Title</span>
         </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="User Email" formControlName="email" [errorStateMatcher]="matcher">
+        <input matInput placeholder="Ad Description" formControlName="description" [errorStateMatcher]="matcher">
         <mat-error>
-          <span *ngIf="!userForm.get('email').valid && userForm.get('email').touched">Please enter User Email</span>
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="User Company" formControlName="company" [errorStateMatcher]="matcher">
-        <mat-error>
-          <span *ngIf="!userForm.get('company').valid && userForm.get('company').touched">Please enter User Company</span>
+          <span *ngIf="!adForm.get('description').valid && adForm.get('description').touched">Please enter Ad Description</span>
         </mat-error>
       </mat-form-field>
       <div class="button-row">
-        <button type="submit" [disabled]="!userForm.valid" mat-flat-button color="primary">
+        <button type="submit" [disabled]="!adForm.valid" mat-flat-button color="primary">
           <mat-icon>save</mat-icon>
         </button>
       </div>

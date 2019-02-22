@@ -10,40 +10,31 @@ import { User } from '../user';
 })
 export class UserDetailComponent implements OnInit {
 
-  user: User = { id: '', name: '', email: '', company: '' };
+  ad: { id: '', title: '', description: '', author_name: '', created_at_datetime: '' };
   isLoadingResults = true;
+  user: string = '';
 
   constructor(private route: ActivatedRoute, private api: ApiService, private router: Router) { }
 
   ngOnInit() {
-    this.getUserDetails(this.route.snapshot.params['id']);
+    this.user = localStorage.getItem('user');
+    this.getAdDetails(this.route.snapshot.params['id']);
   }
 
-  getUserDetails(id) {
-    this.api.getUser(id)
-      .subscribe(data => {
-        this.user = data;
-        this.isLoadingResults = false;
-      });
+  getAdDetails(id) {
+    this.ad = this.api.getAd(id);
+    this.isLoadingResults = false;
   }
 
-  deleteUser(id) {
-    this.isLoadingResults = true;
-    this.api.deleteUser(id)
-      .subscribe(res => {
-        this.isLoadingResults = false;
-        this.router.navigate(['/users']);
-      }, (err) => {
-        console.log(err);
-        this.isLoadingResults = false;
-      }
-      );
+  deleteAd(id) {
+    this.api.deleteAd(id);
+    this.router.navigate(['/users']);
   }
 
-  clickMethod(id: string, name: string) {
-    if (confirm("Are you sure to delete " + name + " wich id is " + id + " ?")) {
-      this.deleteUser(id);
+  clickMethod(id: string, title: string) {
+    if (confirm("Are you sure to delete " + title + " wich id is " + id + " ?")) {
+      this.deleteAd(id);
     }
   }
 
-}
+};

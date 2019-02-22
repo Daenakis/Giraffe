@@ -2,6 +2,13 @@
 .example-container {
   position: relative;
   padding: 5px;
+  margin-top: 40px;
+}
+
+.login_form{
+  margin: auto;
+  display:flex;
+  flex-direction: column;
 }
 
 .example-table-container {
@@ -12,6 +19,10 @@
 
 table {
   width: 100%;
+}
+
+.button-row{
+  margin: auto;
 }
 
 .example-loading-shade {

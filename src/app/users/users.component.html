@@ -1,47 +1,88 @@
+<ng-container *ngIf="signed">
+  <form [formGroup]="loginForm" class="login_form" (ngSubmit)="onFormSubmit(loginForm.value)">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Enter Your Name" formControlName="username" [errorStateMatcher]="matcher">
+      <mat-error>
+        <span *ngIf="!loginForm.get('username').valid && loginForm.get('username').touched">Please enter Login</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Enter Password" formControlName="password" [errorStateMatcher]="matcher">
+      <mat-error>
+        <span *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched ">Please enter valid Password</span>
+      </mat-error>
+    </mat-form-field>
+    <div class="button-row">
+      <button type="submit" [disabled]="!loginForm.valid" mat-flat-button color="primary">
+        Log in
+      </button>
+    </div>
+  </form>
+</ng-container>
+<ng-container *ngIf="!signed">
+  <h2>Hello
+    <span [innerHTML]="user"></span>
+  </h2>
+  <button (click)="logOut()" mat-flat-button color="primary">
+    Log out
+  </button>
+</ng-container>
 <div class="example-container mat-elevation-z8">
   <div class="example-loading-shade" *ngIf="isLoadingResults">
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
   </div>
+
+  <div class="">
+
+  </div>
   <div class="button-row">
-    <a mat-flat-button color="primary" [routerLink]="['/user-add']">
+    <a mat-flat-button color="primary" *ngIf="user !== ''" [routerLink]="['/user-add']">
       <mat-icon>add</mat-icon>
     </a>
   </div>
   <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="data" class="example-table" matSort matSortActive="name" matSortDisableClear matSortDirection="asc">
+    <table mat-table [dataSource]="data | paginate: { itemsPerPage: 5, currentPage: p }" class="example-table" matSort matSortActive="title"
+      matSortDisableClear matSortDirection="asc">
 
-      <!-- User Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>User Name</th>
-        <td mat-cell *matCellDef="let row">{{row.name}}</td>
+      <!-- Title Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>Ad Title</th>
+        <td mat-cell *matCellDef="let row">{{row.title}}</td>
       </ng-container>
 
-      <!-- User Email Column -->
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef>User Email</th>
-        <td mat-cell *matCellDef="let row">{{row.email}}</td>
+      <!-- Desc Column -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <td mat-cell *matCellDef="let row">{{row.description}}</td>
       </ng-container>
 
-      <!-- User Company Column -->
-      <ng-container matColumnDef="company">
-        <th mat-header-cell *matHeaderCellDef>User Company</th>
-        <td mat-cell *matCellDef="let row">{{row.company}}</td>
+      <!-- Author Column -->
+      <ng-container matColumnDef="author_name">
+        <th mat-header-cell *matHeaderCellDef>Author</th>
+        <td mat-cell *matCellDef="let row">{{row.author_name}}</td>
+      </ng-container>
+
+      <!-- Created-at Column -->
+      <ng-container matColumnDef="created_at_datetime">
+        <th mat-header-cell *matHeaderCellDef>Created at</th>
+        <td mat-cell *matCellDef="let row">{{row.created_at_datetime}}</td>
       </ng-container>
 
       <!-- Actions Column -->
-      <ng-container matColumnDef="actions">
+      <ng-container matColumnDef="actions" *ngIf="!signed">
         <th mat-header-cell *matHeaderCellDef>Actions</th>
         <td mat-cell *matCellDef="let row">
           <a mat-flat-button color="primary" [routerLink]="['/user-edit', row.id]">
             <mat-icon>edit</mat-icon>
           </a>
-          <a mat-flat-button color="warn" (click)="clickMethod(row.id,row.name)">
+          <a mat-flat-button color="warn" *ngIf="row.author_name == user && user !== ''" (click)="clickMethod(row.id,row.name)">
             <mat-icon>delete</mat-icon>
           </a>
         </td>
       </ng-container>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/user-details/', row.id]">
+      <tr mat-row *matRowDef="let row ; columns: displayedColumns;" [routerLink]="['/user-details/', row.id]">
       </tr>
     </table>
   </div>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </div>
