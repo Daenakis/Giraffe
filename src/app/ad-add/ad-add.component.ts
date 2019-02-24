@@ -4,11 +4,11 @@ import { ApiService } from '../api.service';
 import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-user-add',
-  templateUrl: './user-add.component.html',
-  styleUrls: ['./user-add.component.scss']
+  selector: 'app-ad-add',
+  templateUrl: './ad-add.component.html',
+  styleUrls: ['./ad-add.component.scss']
 })
-export class UserAddComponent implements OnInit {
+export class AdAddComponent implements OnInit {
 
   adForm: FormGroup;
   title: string = '';
@@ -26,6 +26,6 @@ export class UserAddComponent implements OnInit {
 
   onFormSubmit(form: NgForm) {
     var newId = this.api.addAd(form);
-    this.router.navigate(['/user-details', newId]);
+    this.router.navigate(['/ad-details', newId]);
   }
 }

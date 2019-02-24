@@ -4,11 +4,11 @@ import { ApiService } from '../api.service';
 import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-user-edit',
-  templateUrl: './user-edit.component.html',
-  styleUrls: ['./user-edit.component.scss']
+  selector: 'app-ad-edit',
+  templateUrl: './ad-edit.component.html',
+  styleUrls: ['./ad-edit.component.scss']
 })
-export class UserEditComponent implements OnInit {
+export class AdEditComponent implements OnInit {
 
   adForm: FormGroup;
   id: string = '';
@@ -41,11 +41,11 @@ export class UserEditComponent implements OnInit {
 
   onFormSubmit(form: NgForm) {
     this.api.updateAd(this.id, form)
-    this.router.navigate(['/user-details', this.id]);
+    this.router.navigate(['/ad-details', this.id]);
   }
 
-  userDetails() {
-    this.router.navigate(['/user-details', this.id]);
+  adDetails() {
+    this.router.navigate(['/ad-details', this.id]);
   }
 
 }

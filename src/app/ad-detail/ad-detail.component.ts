@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
-import { User } from '../user';
 
 @Component({
-  selector: 'app-user-detail',
-  templateUrl: './user-detail.component.html',
-  styleUrls: ['./user-detail.component.scss']
+  selector: 'app-ad-detail',
+  templateUrl: './ad-detail.component.html',
+  styleUrls: ['./ad-detail.component.scss']
 })
-export class UserDetailComponent implements OnInit {
+export class AdDetailComponent implements OnInit {
 
   ad: { id: '', title: '', description: '', author_name: '', created_at_datetime: '' };
   isLoadingResults = true;
@@ -28,7 +27,7 @@ export class UserDetailComponent implements OnInit {
 
   deleteAd(id) {
     this.api.deleteAd(id);
-    this.router.navigate(['/users']);
+    this.router.navigate(['/ads']);
   }
 
   clickMethod(id: string, title: string) {

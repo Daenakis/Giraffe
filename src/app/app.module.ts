@@ -17,18 +17,18 @@ import {
 } from "@angular/material";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { UsersComponent } from './users/users.component';
-import { UserDetailComponent } from './user-detail/user-detail.component';
-import { UserAddComponent } from './user-add/user-add.component';
-import { UserEditComponent } from './user-edit/user-edit.component';
+import { AdsComponent } from './ads/ads.component';
+import { AdDetailComponent } from './ad-detail/ad-detail.component';
+import { AdAddComponent } from './ad-add/ad-add.component';
+import { AdEditComponent } from './ad-edit/ad-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsersComponent,
-    UserDetailComponent,
-    UserAddComponent,
-    UserEditComponent
+    AdsComponent,
+    AdDetailComponent,
+    AdAddComponent,
+    AdEditComponent
   ],
   imports: [
     BrowserModule,

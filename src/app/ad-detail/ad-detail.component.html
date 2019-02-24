@@ -3,7 +3,7 @@
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
   </div>
   <div class="button-row">
-    <a mat-flat-button color="primary" [routerLink]="['/users']">
+    <a mat-flat-button color="primary" [routerLink]="['/ads']">
       <mat-icon>list</mat-icon>
     </a>
   </div>
@@ -21,7 +21,7 @@
       </dl>
     </mat-card-content>
     <mat-card-actions>
-      <a mat-flat-button color="primary" *ngIf="user !== ''" [routerLink]="['/user-edit', ad.id]">
+      <a mat-flat-button color="primary" *ngIf="user !== ''" [routerLink]="['/ad-edit', ad.id]">
         <mat-icon>edit</mat-icon>
       </a>
       <a mat-flat-button color="warn" *ngIf="user === ad.author_name" (click)="clickMethod(ad.id,ad.title)">

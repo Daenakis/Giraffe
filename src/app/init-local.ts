@@ -45,6 +45,7 @@ export class InitLocal {
       localStorage.setItem('ad_list', JSON.stringify(ad_list));
       localStorage.setItem('user_list', JSON.stringify(user_list));
       localStorage.setItem('newId', '5');
+      localStorage.setItem('user', '');
       return
     } else {
       console.log('Found Ad\'s...');

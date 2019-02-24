@@ -3,22 +3,22 @@
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
   </div>
   <div class="button-row">
-    <a mat-flat-button color="primary" [routerLink]="['/users']">
-      <mat-icon>list</mat-icon>
+    <a mat-flat-button color="primary" (click)="adDetails()">
+      <mat-icon>info</mat-icon>
     </a>
   </div>
   <mat-card class="example-card">
     <form [formGroup]="adForm" (ngSubmit)="onFormSubmit(adForm.value)">
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Ad Title" formControlName="title" [errorStateMatcher]="matcher">
+        <input matInput formControlName="title" [errorStateMatcher]="matcher">
         <mat-error>
           <span *ngIf="!adForm.get('title').valid && adForm.get('title').touched">Please enter Ad Title</span>
         </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Ad Description" formControlName="description" [errorStateMatcher]="matcher">
+        <input matInput formControlName="description" [errorStateMatcher]="matcher">
         <mat-error>
-          <span *ngIf="!adForm.get('description').valid && adForm.get('description').touched">Please enter Ad Description</span>
+          <span *ngIf="!adForm.get('description').valid && adForm.get('description').touched">Please enter Ad description</span>
         </mat-error>
       </mat-form-field>
       <div class="button-row">

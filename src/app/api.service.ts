@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { InitLocal } from './init-local';
 
-
-const apiUrl = "http://localhost:5555/users";
-
 @Injectable({
   providedIn: 'root'
 })

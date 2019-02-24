@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
-import { User } from '../user';
 import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  selector: 'app-ads',
+  templateUrl: './ads.component.html',
+  styleUrls: ['./ads.component.scss']
 })
-export class UsersComponent implements OnInit {
+export class AdsComponent implements OnInit {
 
   displayedColumns: string[] = ['title', 'description', 'author_name', 'created_at_datetime'];
   loginForm: FormGroup;
@@ -20,6 +19,8 @@ export class UsersComponent implements OnInit {
   user: string = '';
   isLoadingResults: boolean = false;
   p: number = 1;
+  login: string = '';
+  pass: string = '';
 
   constructor(private api: ApiService, private router: Router, private formBuilder: FormBuilder) { }
 
@@ -67,8 +68,9 @@ export class UsersComponent implements OnInit {
   }
 
   deleteAd(id) {
-    //this.isLoadingResults = true;
-    this.api.deleteAd(id)
+    this.isLoadingResults = true;
+    this.api.deleteAd(id);
+    location.reload();
   }
 
   clickMethod(id: string, name: string) {
